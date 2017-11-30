@@ -1,36 +1,41 @@
 <link rel="import" href="bower_components/polymer/polymer-element.html">
 
 <dom-module id="grid-webcomponent">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+                background-color: var(--grid-webcomponent-bc);
+            }
+        </style>
+    </template>
 
-  <script>
-    /**
-     * `grid-webcomponent`
-     * 
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class GridWebcomponent extends Polymer.Element {
-      static get is() { return 'grid-webcomponent'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'grid-webcomponent'
-          }
-        };
-      }
-    }
+    <script>
+        class GridWebcomponent extends Polymer.Element {
 
-    window.customElements.define(GridWebcomponent.is, GridWebcomponent);
-  </script>
+            static get is() {
+                return 'grid-webcomponent';
+            }
+
+            static get properties() {
+                return {
+                    backgroundColor: {
+                        type: String,
+                        value: "#dad0c4",
+                        reflectToAttribute: true,
+                        observer: 'computeStyles'
+                    }
+                }
+            }
+
+            computeStyles() {
+                let styleVars = {
+                    '--grid-webcomponent-bc': this.backgroundColor,
+                };
+                this.updateStyles(styleVars);
+            }
+        }
+
+        window.customElements.define(GridWebcomponent.is, GridWebcomponent);
+    </script>
 </dom-module>

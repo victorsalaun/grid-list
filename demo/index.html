@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -8,23 +8,16 @@
 
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../grid-webcomponent.html">
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic grid-webcomponent demo</h3>
-      <demo-snippet>
-        <template>
-          <grid-webcomponent></grid-webcomponent>
-        </template>
-      </demo-snippet>
-    </div>
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<grid-webcomponent background-color="red"></grid-webcomponent>
+</body>
 </html>
