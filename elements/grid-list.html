@@ -1,15 +1,25 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
+<link rel="import" href="debug-grid.html">
+
 <dom-module id="grid-list">
     <template>
         <style>
             :host {
                 display: block;
+                height: 100%;
+                width: 100%;
                 background: var(--grid-list-background-color);
             }
 
+            :host ::slotted(*) {
+                z-index: 2;
+                position: absolute;
+                background: pink;
+            }
         </style>
         <debug-grid hidden$="{{!debug}}"></debug-grid>
+        <slot></slot>
     </template>
 
     <script>
@@ -23,7 +33,6 @@
                 return {
                     backgroundColor: {
                         type: String,
-                        value: "#dad0c4",
                         reflectToAttribute: true,
                         observer: 'computeStyles'
                     },
@@ -38,6 +47,14 @@
             constructor() {
                 super();
 
+                // Display tiles
+                Array.from(this.children).forEach(tile => {
+                    GridList.displayTile(tile);
+                });
+            }
+
+            ready() {
+                super.ready();
                 // On component double click, change debug mode
                 document.querySelector("grid-list").addEventListener("dblclick", GridList.debugModeChangeHandler);
             }
@@ -51,6 +68,23 @@
 
             static debugModeChangeHandler() {
                 this.debug = !this.debug;
+            }
+
+            static displayTile(tile) {
+                let coordinates = GridList.getTileCoordinates(tile);
+                tile.style.left = coordinates.col * 15 + "px";
+                tile.style.top = coordinates.row * 15 + "px";
+                tile.style.height = coordinates.height * 15 + "px";
+                tile.style.width = coordinates.width * 15 + "px";
+            }
+
+            static getTileCoordinates(tile) {
+                return {
+                    row: +tile.getAttribute('row'),
+                    col: +tile.getAttribute('col'),
+                    width: +tile.getAttribute('width'),
+                    height: +tile.getAttribute('height')
+                }
             }
         }
 

@@ -1,0 +1,62 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="grid-tile">
+    <template>
+        <style>
+
+        </style>
+    </template>
+
+    <script>
+        class GridTile extends Polymer.Element {
+
+            static get is() {
+                return 'grid-tile';
+            }
+
+            static get properties() {
+                return {
+                    col: {
+                        type: Number,
+                        reflectToAttribute: true,
+                        readOnly: true,
+                        observer: 'computeStyles'
+                    },
+                    row: {
+                        type: Number,
+                        reflectToAttribute: true,
+                        readOnly: true,
+                        observer: 'computeStyles'
+                    },
+                    height: {
+                        type: Number,
+                        reflectToAttribute: true,
+                        readOnly: true,
+                        observer: 'computeStyles'
+                    },
+                    width: {
+                        type: Number,
+                        reflectToAttribute: true,
+                        readOnly: true,
+                        observer: 'computeStyles'
+                    },
+                }
+            }
+
+            constructor() {
+                super();
+            }
+
+            ready() {
+                console.log("ready");
+            }
+
+            computeStyles() {
+                let styleVars = {};
+                this.updateStyles(styleVars);
+            }
+        }
+
+        window.customElements.define(GridTile.is, GridTile);
+    </script>
+</dom-module>
