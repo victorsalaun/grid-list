@@ -1,6 +1,6 @@
 {
-  "name": "grid-webcomponent",
-  "main": "grid-webcomponent.html",
+  "name": "grid-list",
+  "main": "elements/grid-list.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0"
   },

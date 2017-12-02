@@ -1,11 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
-<dom-module id="grid-webcomponent">
+<dom-module id="grid-list">
     <template>
         <style>
             :host {
                 display: block;
-                background: var(--grid-webcomponent-background-color);
+                background: var(--grid-list-background-color);
             }
 
         </style>
@@ -13,10 +13,10 @@
     </template>
 
     <script>
-        class GridWebcomponent extends Polymer.Element {
+        class GridList extends Polymer.Element {
 
             static get is() {
-                return 'grid-webcomponent';
+                return 'grid-list';
             }
 
             static get properties() {
@@ -39,12 +39,12 @@
                 super();
 
                 // On component double click, change debug mode
-                document.querySelector("grid-webcomponent").addEventListener("dblclick", GridWebcomponent.debugModeChangeHandler);
+                document.querySelector("grid-list").addEventListener("dblclick", GridList.debugModeChangeHandler);
             }
 
             computeStyles() {
                 let styleVars = {
-                    '--grid-webcomponent-background-color': this.backgroundColor,
+                    '--grid-list-background-color': this.backgroundColor,
                 };
                 this.updateStyles(styleVars);
             }
@@ -54,6 +54,6 @@
             }
         }
 
-        window.customElements.define(GridWebcomponent.is, GridWebcomponent);
+        window.customElements.define(GridList.is, GridList);
     </script>
 </dom-module>
