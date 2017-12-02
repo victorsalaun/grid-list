@@ -38,7 +38,8 @@
             constructor() {
                 super();
 
-                console.log(this.debug);
+                // On component double click, change debug mode
+                document.querySelector("grid-webcomponent").addEventListener("dblclick", GridWebcomponent.debugModeChangeHandler);
             }
 
             computeStyles() {
@@ -46,6 +47,10 @@
                     '--grid-webcomponent-background-color': this.backgroundColor,
                 };
                 this.updateStyles(styleVars);
+            }
+
+            static debugModeChangeHandler() {
+                this.debug = !this.debug;
             }
         }
 
