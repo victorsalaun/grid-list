@@ -1,0 +1,80 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="debug-grid">
+    <template>
+        <style>
+            #grid-background {
+                z-index: 0;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #6e00ff;
+                /* Old browsers */
+                background: -moz-linear-gradient(-45deg, #6e00ff 0%, #ff7700 100%);
+                background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #6e00ff), color-stop(100%, #ff7700));
+                /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(-45deg, #6e00ff 0%, #ff7700 100%);
+                /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(-45deg, #6e00ff 0%, #ff7700 100%);
+                /* Opera 11.10+ */
+                background: -ms-linear-gradient(-45deg, #6e00ff 0%, #ff7700 100%);
+                /* IE10+ */
+                background: linear-gradient(135deg, #6e00ff 0%, #ff7700 100%);
+                /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6e00ff', endColorstr='#ff7700', GradientType=1);
+                /* IE6-9 fallback on horizontal gradient */
+            }
+
+            #grid-panel {
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-size: 60px 60px;
+                background-image: repeating-linear-gradient(
+                        0deg,
+                        rgba(0, 0, 0, 0.44),
+                        rgba(0, 0, 0, 0.44) 2px,
+                        transparent 2px,
+                        transparent 60px),
+                repeating-linear-gradient(
+                        -90deg,
+                        rgba(0, 0, 0, 0.44),
+                        rgba(0, 0, 0, 0.44) 2px,
+                        transparent 2px,
+                        transparent 60px),
+                repeating-linear-gradient(
+                        0deg,
+                        rgba(0, 0, 0, 0.22),
+                        rgba(0, 0, 0, 0.22) 1px,
+                        transparent 1px,
+                        transparent 15px),
+                repeating-linear-gradient(
+                        -90deg,
+                        rgba(0, 0, 0, 0.22),
+                        rgba(0, 0, 0, 0.22) 1px,
+                        transparent 1px,
+                        transparent 15px);
+            }
+
+        </style>
+        <div id="grid-background"></div>
+        <div id="grid-panel"></div>
+    </template>
+
+    <script>
+        class DebugGrid extends Polymer.Element {
+
+            static get is() {
+                return 'debug-grid';
+            }
+
+        }
+
+        window.customElements.define(DebugGrid.is, DebugGrid);
+    </script>
+</dom-module>

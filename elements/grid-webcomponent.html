@@ -1,13 +1,15 @@
-<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 <dom-module id="grid-webcomponent">
     <template>
         <style>
             :host {
                 display: block;
-                background-color: var(--grid-webcomponent-bc);
+                background: var(--grid-webcomponent-background-color);
             }
+
         </style>
+        <debug-grid hidden$="{{!debug}}"></debug-grid>
     </template>
 
     <script>
@@ -24,13 +26,24 @@
                         value: "#dad0c4",
                         reflectToAttribute: true,
                         observer: 'computeStyles'
+                    },
+                    debug: {
+                        type: Boolean,
+                        value: false,
+                        reflectToAttribute: false
                     }
                 }
             }
 
+            constructor() {
+                super();
+
+                console.log(this.debug);
+            }
+
             computeStyles() {
                 let styleVars = {
-                    '--grid-webcomponent-bc': this.backgroundColor,
+                    '--grid-webcomponent-background-color': this.backgroundColor,
                 };
                 this.updateStyles(styleVars);
             }
