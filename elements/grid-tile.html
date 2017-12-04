@@ -1,62 +1,58 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="grid-tile">
     <template>
         <style>
-
+            :host {
+                z-index: 2;
+                position: absolute;
+                background: pink;
+                overflow: hidden;
+            }
         </style>
+        <slot></slot>
     </template>
-
     <script>
-        class GridTile extends Polymer.Element {
+        Polymer({
+            is: 'grid-tile',
 
-            static get is() {
-                return 'grid-tile';
-            }
-
-            static get properties() {
-                return {
-                    col: {
-                        type: Number,
-                        reflectToAttribute: true,
-                        readOnly: true,
-                        observer: 'computeStyles'
-                    },
-                    row: {
-                        type: Number,
-                        reflectToAttribute: true,
-                        readOnly: true,
-                        observer: 'computeStyles'
-                    },
-                    height: {
-                        type: Number,
-                        reflectToAttribute: true,
-                        readOnly: true,
-                        observer: 'computeStyles'
-                    },
-                    width: {
-                        type: Number,
-                        reflectToAttribute: true,
-                        readOnly: true,
-                        observer: 'computeStyles'
-                    },
+            properties: {
+                col: {
+                    type: Number,
+                    reflectToAttribute: true,
+                    observer: '_computeStyles'
+                },
+                row: {
+                    type: Number,
+                    reflectToAttribute: true,
+                    observer: '_computeStyles'
+                },
+                height: {
+                    type: Number,
+                    reflectToAttribute: true,
+                    observer: '_computeStyles'
+                },
+                width: {
+                    type: Number,
+                    reflectToAttribute: true,
+                    readOnly: true,
+                    observer: '_computeStyles'
+                },
+                refreshTimeInSeconds: {
+                    type: Number,
                 }
-            }
+            },
 
-            constructor() {
-                super();
-            }
+            ready: function () {
+                setTimeout(function () {
+                    console.log("Hello");
+                }, this.refreshTimeInSeconds * 1000);
+            },
 
-            ready() {
-                console.log("ready");
-            }
-
-            computeStyles() {
+            _computeStyles: function () {
                 let styleVars = {};
                 this.updateStyles(styleVars);
             }
-        }
-
-        window.customElements.define(GridTile.is, GridTile);
+        });
     </script>
 </dom-module>

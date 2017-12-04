@@ -1,4 +1,4 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="debug-grid">
     <template>
@@ -67,14 +67,8 @@
     </template>
 
     <script>
-        class DebugGrid extends Polymer.Element {
-
-            static get is() {
-                return 'debug-grid';
-            }
-
-        }
-
-        window.customElements.define(DebugGrid.is, DebugGrid);
+        Polymer({
+            is: 'debug-grid'
+        });
     </script>
 </dom-module>

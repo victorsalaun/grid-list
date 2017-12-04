@@ -1,4 +1,4 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../polymer/polymer.html">
 
 <link rel="import" href="debug-grid.html">
 
@@ -11,74 +11,56 @@
                 width: 100%;
                 background: var(--grid-list-background-color);
             }
-
-            :host ::slotted(*) {
-                z-index: 2;
-                position: absolute;
-                background: pink;
-            }
         </style>
         <debug-grid hidden$="{{!debug}}"></debug-grid>
         <slot></slot>
     </template>
 
     <script>
-        class GridList extends Polymer.Element {
+        Polymer({
+            is: 'grid-list',
 
-            static get is() {
-                return 'grid-list';
-            }
-
-            static get properties() {
-                return {
-                    backgroundColor: {
-                        type: String,
-                        reflectToAttribute: true,
-                        observer: 'computeStyles'
-                    },
-                    debug: {
-                        type: Boolean,
-                        value: false,
-                        reflectToAttribute: false
-                    }
+            properties: {
+                backgroundColor: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_computeStyles'
+                },
+                debug: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: false
                 }
-            }
+            },
 
-            constructor() {
-                super();
-
+            ready: function () {
                 // Display tiles
                 Array.from(this.children).forEach(tile => {
-                    GridList.displayTile(tile);
+                    this.displayTile(tile);
                 });
-            }
+                document.querySelector("grid-list").addEventListener("dblclick", this.debugModeChangeHandler);
+            },
 
-            ready() {
-                super.ready();
-                // On component double click, change debug mode
-                document.querySelector("grid-list").addEventListener("dblclick", GridList.debugModeChangeHandler);
-            }
-
-            computeStyles() {
+            _computeStyles() {
                 let styleVars = {
                     '--grid-list-background-color': this.backgroundColor,
                 };
                 this.updateStyles(styleVars);
-            }
+            },
 
-            static debugModeChangeHandler() {
+            debugModeChangeHandler() {
                 this.debug = !this.debug;
-            }
+            },
 
-            static displayTile(tile) {
-                let coordinates = GridList.getTileCoordinates(tile);
+            displayTile(tile) {
+                let coordinates = this.getTileCoordinates(tile);
                 tile.style.left = coordinates.col * 15 + "px";
                 tile.style.top = coordinates.row * 15 + "px";
                 tile.style.height = coordinates.height * 15 + "px";
                 tile.style.width = coordinates.width * 15 + "px";
-            }
+            },
 
-            static getTileCoordinates(tile) {
+            getTileCoordinates(tile) {
                 return {
                     row: +tile.getAttribute('row'),
                     col: +tile.getAttribute('col'),
@@ -86,8 +68,6 @@
                     height: +tile.getAttribute('height')
                 }
             }
-        }
-
-        window.customElements.define(GridList.is, GridList);
+        });
     </script>
 </dom-module>
