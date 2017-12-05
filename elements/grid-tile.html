@@ -17,6 +17,10 @@
             is: 'grid-tile',
 
             properties: {
+                id: {
+                    type: String,
+                    reflectToAttribute: true
+                },
                 col: {
                     type: Number,
                     reflectToAttribute: true,
@@ -44,14 +48,23 @@
             },
 
             ready: function () {
-                setTimeout(function () {
-                    console.log("Hello");
-                }, this.refreshTimeInSeconds * 1000);
+                if (this.refreshTimeInSeconds !== 0 && this.refreshTimeInSeconds !== undefined) {
+                    this._refreshContent();
+                }
             },
 
             _computeStyles: function () {
                 let styleVars = {};
                 this.updateStyles(styleVars);
+            },
+
+            _refreshContent: function () {
+                let vm = this;
+                setTimeout(function () {
+                    const html = vm.innerHTML;
+                    vm.innerHTML = html;
+                    vm._refreshContent();
+                }, this.refreshTimeInSeconds * 1000);
             }
         });
     </script>
