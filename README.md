@@ -1,6 +1,6 @@
-# \<grid-webcomponent\>
+# \<grid-list\>
 
-
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/victorsalaun/grid-list)
 
 ## Install the Polymer-CLI
 
@@ -9,7 +9,7 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 ## Viewing Your Element
 
 ```
-$ polymer serve
+$ polymer serve -o
 ```
 
 ## Running Tests
